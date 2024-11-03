@@ -1,6 +1,3 @@
-import math
-x=input()
-y=input()
 math.ceil(x)	#Возвращает ближайшее целое число большее, чем x
 math.fabs(x)	#Возвращает абсолютное значение числа x
 math.factorial(x)	#Вычисляет факториал x
