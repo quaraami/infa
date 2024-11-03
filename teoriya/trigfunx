@@ -1,0 +1,8 @@
+math.cos(x)	Возвращает cos числа X
+math.sin(x)	Возвращает sin числа X
+math.tan(x)	Возвращает tan числа X
+math.acos(x)	Возвращает arccos числа X
+math.asin(x)	Возвращает arcsin числа X
+math.atan(x)	Возвращает arctan числа X
+math.pi - число Pi
+math.e - экспонента
