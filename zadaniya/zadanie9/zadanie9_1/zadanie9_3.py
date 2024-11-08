@@ -5,7 +5,7 @@ p=0
 x1 = np.linspace(-25, p - 0.01, 500)
 x2 = np.linspace(25, p + 0.01, 500)
 a=1
-b=1
+b=2
 dir = os.getcwd()
 def f(x):
     return (x**b + a**b)/x**b
@@ -22,4 +22,3 @@ plt.xlim(-25,25)
 plt.ylim(-10,10)
 plt.title('Функции типа (x**b + a**b)/x**b при разных значениях a и b')
 plt.savefig(dir + '/zadanie9', dpi=300)
-plt.show()
