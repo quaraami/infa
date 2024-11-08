@@ -6,7 +6,7 @@ from matplotlib import pyplot as plt
 width = 0.35       #Задаём ширину столбцов
 fig, ax = plt.subplots()
 
-ax.bar(labels, android_users, width, label='Android', color='black')
+ax.bar(labels, android_users, width, label='Android', color='deeppink')
 ax.bar(labels, ios_users, width, bottom=android_users,
       label='iOS', color='red') #Указываем с помощью параметра bottom, что значения в столбце должны быть выше значений переменной android_users
 
