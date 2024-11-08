@@ -13,7 +13,6 @@ x = np.linspace(-10, 10, 1000)
 
 plt.plot(x, f(x), color='red', linewidth=1)
 plt.grid()
-# plt.show()
 plt.savefig(dir + '/my_first_dependence.svg', dpi=300)
-plt.annotate('wtf', (0, 0), (2.5, 10))
+plt.annotate('text', (0, 0), (2.5, 10))
 plt.show()
