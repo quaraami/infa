@@ -1,0 +1,6 @@
+re.search(pattern, string)	Найти в строке string первую строчку, подходящую под шаблон pattern;
+re.fullmatch(pattern, string)	Проверить, подходит ли строка string под шаблон pattern;
+re.split(pattern, string, maxsplit=0)	Аналог str.split(), только разделение происходит по подстрокам, подходящим под шаблон pattern;
+re.findall(pattern, string)	Найти в строке string все непересекающиеся шаблоны pattern;
+re.finditer(pattern, string)	Итератор по всем непересекающимся шаблонам pattern в строке string (выдаются match-объекты);
+re.sub(pattern, repl, string, count=0)	Заменить в строке string все непересекающиеся шаблоны pattern на repl;
