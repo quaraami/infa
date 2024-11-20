@@ -16,6 +16,7 @@ arr = [[5,2,17],
 for i in range(n):
      print(arr[i].index(min(arr[i])))
      print(f'в строке {i}')
+     print(f'минимальное значение в {i} строке {min(arr[i])}')
     
 
 
