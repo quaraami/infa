@@ -1,4 +1,4 @@
-string = "Привет: мир: сегодня"
+string = "Привет: мир: сегодня: я:учу:Python:"
 new_string=string.replace(':','%')
 j = 0
 for i in string:
