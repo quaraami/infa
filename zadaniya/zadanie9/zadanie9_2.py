@@ -1,25 +1,44 @@
-import numpy as np # вводим mathplotlib
+import numpy as np
 import os
 from matplotlib import pyplot as plt
-p=0
-x1 = np.linspace(-25, p - 0.01, 500)
-x2 = np.linspace(25, p + 0.01, 500)
-a=2
-b=1
+p=0 
+#ПАРАМЕТРЫ ДЛЯ ПЕРВОГО
+x1 = np.linspace(p + 0.01, 25, 500)
+a=1
+b=1 
+y1=(x1**b + a**b)/x1**b
+#ПАРАМЕТРЫ ДЛЯ ВТОРОГО
+x2 = np.linspace(-p + 0.01, 25, 500)
+d=2
+h=1
+y2=(x2**h + d**h)/x2**h
+#ПАРАМЕТРЫ ДЛЯ ТРЕТЬЕГО
+x3 = np.linspace(p + 0.01, 25, 500)
+c=1
+v=2
+y3=(x3**v + c**v)/x3**v
+
+
 dir = os.getcwd()
-def f(x):
-    return (x**b + a**b)/x**b
-l1=plt.plot (x1, f(x1))
-l2=plt.plot (x2, f(x2))
-plt.plot (x1, f(x1), color='blue', label=r"$\mathcal{F} = \frac{x^b+a^b}{x^b}$")
-plt.plot (x2, f(x2), color='blue')
+fig = plt.figure()
+#ВЫВОД АСИМПТОТЫ И ТРЕХ ГРАФИКОВ
+plt.plot (x1, y1, color='blue', label=r"$\mathcal{F} = \frac{x^1+1^1}{x^1}$")
+plt.plot (x2, y2, color='purple', label=r"$\mathcal{F} = \frac{x^1+2^1}{x^1}$")
+plt.plot (x3, y3, color='green', label=r"$\mathcal{F} = \frac{x^2+1^2}{x^2}$")
 plt.axvline(p, color='red', linestyle='--', label='Точка разрыва', linewidth=1)
-plt.xlabel('Ось х')
-plt.ylabel('Ось f(x)')
-plt.grid(True)
-plt.legend()
-plt.xlim(-25,25)
-plt.ylim(-10,10)
-plt.title('Функции типа (x**b + a**b)/x**b при разных значениях a и b')
+plt.xlabel('Ось х') #название x
+plt.ylabel('Ось f(x)') #название y
+plt.grid(True) #вывод сетки
+plt.legend() #вывод легенды
+plt.xlim(-0.5, 20) #задаем диапозон построения x
+plt.ylim(0,20) #задаем диапозон построения y
+plt.title('Функции типа (x**b + a**b)/x**b при разных значениях a и b')#название
+
+#создание врезки
+axes2 = fig.add_axes([0.35,0.62,0.25,0.25]) #расположение врезки и её размер
+axes2.plot(x1, y1, 'b', x2, y2, 'purple', x3, y3, 'green') #добавляем графики на врезку
+plt.xlim(0,6) #задаем диапозон построения x
+plt.ylim(1,6) #задаем диапозон построения y
+plt.grid(True) #вывод сетки
 plt.savefig(dir + '/zadanie9_2', dpi=300)
-plt.show()
+plt.show() #вывод графика в окно
