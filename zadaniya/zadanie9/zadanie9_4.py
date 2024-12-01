@@ -1,56 +1,57 @@
 import numpy as np
+import matplotlib.pyplot as plt
 import os
-from matplotlib import pyplot as plt
-#ПАРАМЕТРЫ ДЛЯ ПЕРВОГО
-p=0 # асимптота
-x1 = np.linspace(-25, p - 0.01, 500) #граница изнений аргумента в левой части графика
-x2 = np.linspace(p + 0.01, 25 , 500) #граница изнений аргумента в правой части графика
-a=1 #параметр а
-b=0.5 #параметр b, степень
+def f(x, alpha, beta):
+    return (x**beta + alpha**beta)/x**beta
 dir = os.getcwd()
-def f(x):
-    return (x**b + a**b)/x**b #расчет функции для певрого
-def g(x):
-    return (x**h + d**h)/x**h #расчет функции для второго
-def u(x):
-    return (x**v + c**v)/x**v #расчет функции для третьего
 
-#ПАРАМЕТРЫ ДЛЯ ВТОРОГО
-x11 = np.linspace(-25, p - 0.01, 500)
-x21 = np.linspace(25, p + 0.01, 500)
-d= 1
-h= -0.5
-#ПАРАМЕТРЫ ДЛЯ ТРЕТЬЕГО
-x12 = np.linspace(-25, p - 0.01, 500)
-x22 = np.linspace(25, p + 0.01, 500)
-c= 1
-v= -1.5
-#ПОСТРОЕНИЕ ПЕРВОГО
-l1=plt.plot (x1, f(x1)) #расчет точек графика для левой части
-l2=plt.plot (x2, f(x2)) #расчет точек графика для правой части
-#ПОСТРОЕНИЕ ВТОРОГО
-l1=plt.plot (x11, g(x11))
-l2=plt.plot (x21, g(x21))
-#ПОСТРОЕНИЕ  ТРЕТЬЕГО
-l1=plt.plot (x12, u(x12))
-l2=plt.plot (x22, u(x22))
-#ВЫВОД ПЕРВОГО
-plt.plot (x1, f(x1), color='blue', label=r"$\mathcal{F} = \frac{x^(0.5)+1^(0.5)}{x^(0.5)}$") #вывод левой части
-plt.plot (x2, f(x2), color='blue') #вывод правой части
-#ВЫВОД ВТОРОГО
-plt.plot (x11, g(x11), color='purple', label=r"$\mathcal{F} = \frac{x^(-0.5)+1^(-0.5)}{x^(-0.5)}$")
-plt.plot (x21, g(x21), color='purple')
-#ВЫВОД ТРЕТЬЕГО
-plt.plot (x12, u(x12), color='green', label=r"$\mathcal{F} = \frac{x^(-1.5)+1^(-1.5)}{x^(-1.5)}$")
-plt.plot (x22, u(x22), color='green')
-#ВЫВОД АСИМПТОТЫ
-plt.axvline(p, color='red', linestyle='--', label='Точка разрыва', linewidth=1) #строим асимптоту
-plt.xlabel('Ось х')
-plt.ylabel('Ось f(x)')
-plt.grid(True) #вывод сетки
-plt.legend() #вывод легенды
-plt.xlim(-1,15) #задаем диапозон построения x
-plt.ylim(-1,10) #задаем диапозон построения y
-plt.title('Функции типа (x**b + a**b)/x**b при разных значениях a и b')#название
+# Значения x для основного графика
+x_main = np.linspace(-100, 100, 5000)
+
+# Значения x для врезки
+x_inset = np.linspace(-100, 100, 4000)
+
+# Параметры для графиков
+alphas = [1, 1, 1]
+betas = [0.5, -0.5, -1.5]
+colors = ['g', 'y', 'r']
+labels = [rf'$\alpha={a}, \beta={b}$' for a, b in zip(alphas, betas)]
+
+# Основной график
+fig, ax = plt.subplots()
+for alpha, beta, color, label in zip(alphas, betas, colors, labels):
+    ax.plot(x_main, f(x_main, alpha, beta), color=color, label=label)
+    
+# Прямые f(x) = 0, x = 0
+ax.axhline(0, color='k', linewidth=0.5)
+ax.axvline(0, color='black', linewidth=0.5)
+
+# Врезка
+inset_ax = fig.add_axes([0.55, 0.15, 0.35, 0.25])
+for alpha, beta, color, label in zip(alphas, betas, colors, labels):
+    inset_ax.plot(x_inset, f(x_inset, alpha, beta), color=color, label=label)
+
+# Прямые f(x) = 0, x=0 на врезке
+inset_ax.axhline(0, color='k', linewidth=0.5)
+ax.axvline(0, color='black', linewidth=0.5)
+
+# Оформление основного графика
+ax.set_xlim([-10, 10])
+ax.set_ylim([-10, 7.5])
+plt.axvline(x=0, color='black', linewidth=1)
+ax.set_title('Функции типа (x**b + a**b)/x**b при разных значениях a и b')
+ax.set_xlabel('$x$')
+ax.set_ylabel('$f(x)$')
+ax.grid(True)
+ax.legend()
+
+# Оформление врезки
+inset_ax.set_xlim([0, 5])
+inset_ax.set_ylim([0, 5])
+inset_ax.set_title('Поведение графиков при $x \\rightarrow -\infty$')
+inset_ax.set_xlabel('$x$')
+inset_ax.set_ylabel('$f(x)$')
+inset_ax.grid(True)
+inset_ax.legend(loc='lower right')
 plt.savefig(dir + '/zadanie9_4', dpi=300)
-plt.show() #вывод графика в окно
+plt.show()
