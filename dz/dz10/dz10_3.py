@@ -35,16 +35,13 @@ df = pd.DataFrame(dt)
 # Подсчитываем уникальные элементы для всех числовых столбцов
 columns = ['mark']
 for column in columns:
-    # Подсчитываем уникальные элементы
+    #Подсчитываем уникальные элементы
     unique_elements = df[column].value_counts()
-    print(unique_elements)
-    # Создаем подграфики
-    plt.bar(unique_elements.index, unique_elements.values, color= "#006400")
-
-    plt.xlabel('Баллы')
-    plt.ylabel('Кол-во учеников')
-    plt.title('Распределение по баллам')
-    plt.grid(axis='y', linestyle='--', alpha=0.7)
-
-plt.tight_layout()
+print(unique_elements)
+# Создаем гистограмму
+plt.bar(unique_elements.index, unique_elements.values, color= "#006400")
+plt.xlabel('Баллы')
+plt.ylabel('Кол-во учеников')
+plt.title('Распределение по баллам')
+plt.grid(axis='y', linestyle='--', alpha=0.7)
 plt.show()
