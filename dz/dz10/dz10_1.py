@@ -1,7 +1,7 @@
 import pandas as pd
 list = list('abcdefghik')
 massiv = [0, 1, 2, 3, 4, 5, 6, 7, 8]
-dict = ['Kazakhstan', 'Russia', 'Belarus', 'Ukraine']
+dict = ['Kazakhstan', 'Russia', 'Belarus', 'Poland']
  
 s1 = pd.Series(list)
 s2 = pd.Series(massiv)
