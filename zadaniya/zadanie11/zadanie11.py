@@ -2,23 +2,21 @@ import pandas as pd
 df = pd.read_csv('NISPUF17.csv', sep=',')
 #1 задание
 def proportion_of_education(dataframe):
-    prop_of_educ = dict()
+    prop_of_educ = dict() #пустой массив
     len_of_df = len(df)
-
     less_12 = round(float(df["EDUC1"].where(df["EDUC1"] ==1).count() / len_of_df),2)
     eq_12 = round(float(df["EDUC1"].where(df["EDUC1"] ==2).count() / len_of_df),2)
     more_12 = round(float(df["EDUC1"].where(df["EDUC1"] ==3).count() / len_of_df),2)
     college = round(float(df["EDUC1"].where(df["EDUC1"] ==4).count() / len_of_df),2)
     
 
-    prop_of_educ = {"less than 12": less_12,
+    prop_of_educ = {"Меньше 12 классов": less_12,
                     "12": eq_12,
-                    "more than 12": more_12,
-                    "college": college}
+                    "Больше 12 классов": more_12,
+                    "Колледж": college}
     print(prop_of_educ)
 proportion_of_education(df)
 #2 задание
-print(df["CBF_01"].unique())
 def aid(dataframe): #average influenza doses
     df["CBF_01"]=df["CBF_01"].replace(1,"Yes", regex=True)
     df["CBF_01"]=df["CBF_01"].replace(2,"No", regex=True)
@@ -27,7 +25,7 @@ def aid(dataframe): #average influenza doses
 
 bm=df.groupby("CBF_01")["P_NUMFLU"].mean()
 bm_turtle = (round(float(bm[1]),2), round(float(bm[2]),2))
-print(bm_turtle)
+print(f'Среднее значение количества вакцин для мальчиков и девочек равно {bm_turtle}')
 #3 задание
 def chickenpox_by_sex(dataframe):
 
@@ -53,8 +51,8 @@ def chickenpox_by_sex(dataframe):
     resultFemale = count2_1/count2_2
     
     result = {
-            "male": float(round(resultMale,4)),
-            "female": float(round(resultFemale,4))
+            "Мальчики": float(round(resultMale,4)),
+            "Девочки": float(round(resultFemale,4))
               }
 
     print(result)
