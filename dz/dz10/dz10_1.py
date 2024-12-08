@@ -1,7 +1,6 @@
 import pandas as pd
-import numpy as np
 list = list('abcdefghik')
-massiv = np.arange(10)
+massiv = [0, 1, 2, 3, 4, 5, 6, 7, 8]
 dict = ['Kazakhstan', 'Russia', 'Belarus', 'Ukraine']
  
 s1 = pd.Series(list)
