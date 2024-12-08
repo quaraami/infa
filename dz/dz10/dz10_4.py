@@ -10,3 +10,6 @@ result_vertical = pd.concat([df1, df2])
 
 print("Результат вертикальной конкатенации:")
 print(result_vertical)
+result_horizontal_merge = pd.merge(df1, df2, on='A')
+print("Результат горизонтальнойконкатенации:")
+print(result_horizontal_merge)
