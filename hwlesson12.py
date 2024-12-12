@@ -24,3 +24,14 @@ plt.ylabel('Доход')
 plt.title('Зависимость доходов от возраста для мужчин')
 plt.grid(True)
 plt.show()
+#5
+
+fig, ax = plt.subplots(figsize=(10, 6))
+m = df[df['Genre'] == 'Male']
+w = df[df['Genre'] == 'Female']
+data_m = m.groupby('Annual Income (k$)')['Spending Score (1-100)'].mean()
+data_w = w.groupby('Annual Income (k$)')['Spending Score (1-100)'].mean()
+
+data_m.plot.bar(color='#00FFFF')
+data_w.plot.bar(color='#DC143C')
+plt.show()

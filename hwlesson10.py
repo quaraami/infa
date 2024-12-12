@@ -1,7 +1,31 @@
 import pandas as pd
+import numpy as np
 import matplotlib.pyplot as plt
 
-# Пример DataFrame
+#1
+list = list('abcdefghik')
+massiv = [0, 1, 2, 3, 4, 5, 6, 7, 8]
+dict = ['Kazakhstan', 'Russia', 'Belarus', 'Poland']
+ 
+s1 = pd.Series(list)
+s2 = pd.Series(massiv)
+s3 = pd.Series(dict)
+ 
+print(s1)
+print(s2)
+print(s3)
+
+#2
+s1 = pd.Series([1, 2, 3, 4, 5])
+s2 = pd.Series([5, 6, 7, 8, 9])
+
+s3 = pd.Series(np.union1d(s1, s2)) # получаем объединенный Series
+s4 = pd.Series(np.intersect1d(s1, s2)) # получаем пересекающиеся данные
+s5 = s3[~s3.isin(s4)] # отбираем все данные, кроме пересекающихся
+print(s3)
+print(s5)
+
+#3
 dt = {
     'id': {0: 1, 1: 2, 2: 3, 3: 4, 4: 5, 5: 6, 6: 7, 7: 8, 8: 9, 9: 10, 10: 11, 11: 12,
            12: 13, 13: 14, 14: 15, 15: 16, 16: 17, 17: 18, 18: 19, 19: 20, 20: 21, 21: 22,
@@ -44,4 +68,39 @@ plt.xlabel('Баллы')
 plt.ylabel('Кол-во учеников')
 plt.title('Распределение по баллам')
 plt.grid(axis='y', linestyle='--', alpha=0.7)
+plt.show()
+
+#4
+# Создание первых двух DataFrames
+df1 = pd.DataFrame({'A': [6, 4], 'B': [6, 4]})
+df2 = pd.DataFrame({'A': [6, 4], 'B': [6, 4]})
+print(f'Первая база данныx \n {df1}')
+print(f'Вторая база данныx \n {df2}')
+# Конкатенация DataFrames по вертикали
+result_vertical = pd.concat([df1, df2])
+
+print("Результат вертикальной конкатенации:")
+print(result_vertical)
+result_horizontal_merge = pd.merge(df1, df2, on =['A', 'B']) #из df1 и df2 выбирает совпадающие
+#значения по столбцам А и В
+print("Результат горизонтальной конкатенации:")
+print(result_horizontal_merge)
+
+#5
+dt = {
+    'x': [1, 2, 3, 4, 5],
+    'y1': [1, 4, 9, 16, 25],
+    'y2': [15, 5, 35, 25, 55]
+}
+df = pd.DataFrame(dt)
+
+# Построение графика
+plt.figure(figsize=(8, 6))  # Устанавливаем размер фигуры
+plt.plot(df['x'], df['y1'], label='y1')  # Первый график
+plt.plot(df['x'], df['y2'], label='y2')  # Второй график
+plt.legend()  # Легенда
+plt.xlabel('x')
+plt.ylabel('y1 and y2')
+plt.title('Зависимости y1 и y2 от x')
+plt.grid()  # Включаем сетку для удобства чтения графика
 plt.show()
