@@ -1,0 +1,4 @@
+mkdir exam_folder
+cd exam_folder
+echo "Hello, Linux!" > notes.txt
+mv notes.txt ~/
